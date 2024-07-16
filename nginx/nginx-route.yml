@@ -1,0 +1,17 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: nginx
+  namespace: support-system
+  labels:
+    app: nginx
+spec:
+  host: nginx-support-system.apps.ocp.dmz.experteam.com.tw
+  to:
+    kind: Service
+    name: nginxsvc
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None
