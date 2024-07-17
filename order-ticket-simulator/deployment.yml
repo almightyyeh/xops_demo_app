@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 'order-ticket-simulator'
+spec:
+  selector:
+    matchLabels:
+      app: order
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - name: container
+          image: >-
+            almighty/order-ticket-simulator:latest
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%

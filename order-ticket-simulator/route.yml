@@ -1,0 +1,17 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/balance: roundrobin
+    haproxy.router.openshift.io/disable_cookies: 'true'
+  name: order-ticket-simulator
+  labels:
+    app: order
+spec:
+  to:
+    kind: Service
+    name: order-ticket-simulator
+  tls: null
+  port:
+    targetPort: 5000
