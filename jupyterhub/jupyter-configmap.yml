@@ -6,6 +6,10 @@ data:
   jupyterhub_config.py: |
     # jupyterhub_config.py
     c = get_config()
+
+    # allow all host ip listen
+    c.JupyterHub.ip = '*'
+    
     # put the log file in /var/log
     c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
     
@@ -21,5 +25,4 @@ data:
     # with ~/assignments/Welcome.ipynb as the default landing page
     # this config could also be put in
     # /etc/ipython/ipython_notebook_config.py
-    c.Spawner.notebook_dir = '~/assignments'
-    c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
+    c.Spawner.default_url = "/lab"

@@ -20,7 +20,7 @@ spec:
             - containerPort: 8000
               protocol: TCP
           command: ["jupyterhub"]
-          args: ["--config", "/etc/jupyterhub/jupyterhub_config.py"]
+          args: ["--config", "/etc/jupyterhub/jupyterhub_config.py", "--ip", "0.0.0.0"]
           env:
             # Define the environment variable
             - name: jupyter-conf
