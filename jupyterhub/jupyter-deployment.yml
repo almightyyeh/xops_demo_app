@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter
+  template:
+    metadata:
+      labels:
+        app: jupyter
+    spec:
+      containers:
+        - name: jupyter-worker
+          image: >-
+            quay.io/jupyterhub/jupyterhub:5.0
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          command: ["jupyterhub"]
+          args: ["--config", "/etc/jupyterhub/jupyterhub_config.py"]
+          env:
+            # Define the environment variable
+            - name: jupyter-conf
+              valueFrom:
+                configMapKeyRef:
+                  name: jupyter-configmap
+                  key: jupyterhub_config.py
+          volumeMounts:
+            - name: jupyter-config-volume
+              mountPath: "/etc/jupyterhub"
+              readOnly: true
+      volumes:
+        - name: jupyter-config-volume
+          configMap:
+            name: jupyter-configmap
+            items:
+              - key: "jupyterhub_config.py"
+                path: "jupyterhub_config.py"
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%

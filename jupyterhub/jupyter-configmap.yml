@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jupyter-configmap
+data:
+  jupyterhub_config.py: |
+    # jupyterhub_config.py
+    c = get_config()
+    # put the log file in /var/log
+    c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
+    
+    # create system users that don't exist yet
+    c.LocalAuthenticator.create_system_users = True
+    
+    # specify users and admin
+    c.Authenticator.whitelist = {'admin', 'eds'}
+    c.Authenticator.admin_users = {'admin', 'eds'}
+    c.Authenticator.allow_all = True
+
+    # start single-user notebook servers in ~/assignments,
+    # with ~/assignments/Welcome.ipynb as the default landing page
+    # this config could also be put in
+    # /etc/ipython/ipython_notebook_config.py
+    c.Spawner.notebook_dir = '~/assignments'
+    c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
