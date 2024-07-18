@@ -15,7 +15,7 @@ spec:
       containers:
         - name: jupyter-worker
           image: >-
-            quay.io/jupyterhub/jupyterhub:5.0
+            docker.io/almighty/jupyterhub-pod:latest
           ports:
             - containerPort: 8000
               protocol: TCP

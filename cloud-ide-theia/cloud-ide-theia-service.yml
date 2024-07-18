@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: theia
+  namespace: zen-test
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: theia
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
