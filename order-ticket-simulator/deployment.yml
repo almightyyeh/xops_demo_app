@@ -13,6 +13,8 @@ spec:
       labels:
         app: order
     spec:
+      serviceAccount: scc-anyuid
+      serviceAccountName: scc-anyuid
       containers:
         - name: container
           image: >-

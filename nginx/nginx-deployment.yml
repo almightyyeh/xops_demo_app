@@ -12,9 +12,12 @@ spec:
       labels:
         app: nginx
     spec:
+      serviceAccount: scc-anyuid
+      serviceAccountName: scc-anyuid
       containers:
       - name: nginx
         image: nginx:1.14.2
         ports:
         - containerPort: 80
+
 

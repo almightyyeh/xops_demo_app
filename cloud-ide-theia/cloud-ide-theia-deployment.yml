@@ -17,6 +17,8 @@ spec:
       labels:
         app: theia
     spec:
+      serviceAccount: scc-anyuid
+      serviceAccountName: scc-anyuid
       containers:
       - image: elswork/theia:latest
         imagePullPolicy: Always
