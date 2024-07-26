@@ -12,8 +12,8 @@ spec:
       labels:
         app: nginx
     spec:
-      serviceAccount: scc-anyuid
-      serviceAccountName: scc-anyuid
+      serviceAccount: nginx
+      serviceAccountName: nginx
       containers:
       - name: nginx
         image: nginx:1.14.2

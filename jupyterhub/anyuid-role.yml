@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: scc-anyuid
+  name: jupyterhub
 rules:
 - apiGroups:
   - security.openshift.io

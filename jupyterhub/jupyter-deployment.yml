@@ -12,8 +12,8 @@ spec:
       labels:
         app: jupyter
     spec:
-      serviceAccount: scc-anyuid
-      serviceAccountName: scc-anyuid
+      serviceAccount: jupyterhub
+      serviceAccountName: jupyterhub
       containers:
         - name: jupyter-worker
           image: >-
